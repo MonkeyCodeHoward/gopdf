@@ -11,6 +11,13 @@
 9.支持二维码、条形码生成，可以通过div浮动到指定位置
 10.可以通过合并单元格来达到设置列宽的目的
 
+后端返回文件流
+c.Writer.Header().Set("Content-type", "application/pdf")
+	c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Disposition")
+	filename := url.QueryEscape(fmt.Sprintf("出库单%v.pdf", req.ID))
+	c.Writer.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename*=utf-8''%s", filename))
+	c.String(http.StatusOK, string(res))
+
 
 example  div + table
 
